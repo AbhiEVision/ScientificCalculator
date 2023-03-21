@@ -16,263 +16,254 @@
             integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+        <!-- Boot strap-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+        <script defer
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+        <script defer
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+
+
     </head>
 
     <body>
-        <div id="main-div">
-            <div id="calculator">
-                <!-- Input Show Section-->
-                <div class="input-screens">
-                    <div class="input-bar">
-                        <input id="secoundary" type="text" value="">
-                    </div>
-                    <div class="input-bar">
-                        <input id="primary" type="text" value="0">
-                    </div>
+        <div class="container" id="calculator">
+            <div class="row" id="input-screen">
+                <div class="row d-flex justify-content-end">
+                    <input type="text" class="secoundary border-0 text-end"
+                        id="secoundary" value="">
+                    <input type="text" class="primary border-0 text-end"
+                        id="primary" value="0">
                 </div>
-
-                <!-- Memory Section -->
-                <div class="memory-functions">
-                    <div class="first-line">
-                            <button class="btn mf-f-line">
-                                DEG
-                            </button>
-                            <button class="btn mf-f-line" onclick="Exponational()">
-                                F-E
-                            </button>                        
-                    </div>
-                    <div class="secound-line">
-                        <button class="btn memory-fn-btn" onclick="MemoryClear()">
-                            MC
-                        </button>
-                        <button class="btn memory-fn-btn" onclick="MemoryRead()">
-                            MR
-                        </button>
-                        <button class="btn memory-fn-btn" onclick="MemoryAdd()">
-                            M+
-                        </button>
-                        <button class="btn memory-fn-btn" onclick="MemorySub()">
-                            M-
-                        </button>
-                        <button class="btn memory-fn-btn" onclick="MemoryStore()">
-                            MS
-                        </button>
-                        <button class="btn memory-fn-btn" onclick="ShowMemory()">
-                            M <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!--Extra Function-->
-                <div id="functions">
-                    <div class="math-functions">
-                        <button onclick="ShowExtraTrignoFunction()">
-                            trigonometry
-                            &nbsp;
-                            <i class="fa fa-angle-down" id="trigno-angle" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div class="math-functions">
-                        <button onclick="ShowExtraFunctionButton()">
-                            &nbsp;
-                            &#x192;
-                            &nbsp;functions
-                            &nbsp;
-                            <i class="fa fa-angle-down" id="function-angle" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- extra functions from above section -->
-                <div id="trigno-extra-btn">
-                    <button class="btn " onclick="ClickEventInTrigno2nd()">
-                        2<sup>nd</sup>
-                    </button>
-                    <button class="btn trigno-func" onclick="DoTrignoCalculation('sin')">
-                        sin
-                    </button>
-                    <button class="btn inverse-normal" onclick="DoTrignoCalculation('sin-1')">
-                        sin<sup>-1</sup>
-                    </button>
-                    <button class="btn trigno-hyp-func" onclick="DoTrignoCalculation('sinh')">
-                        sinh
-                    </button>
-                    <button class="btn trigno-func" onclick="DoTrignoCalculation('cos')">
-                        cos
-                    </button>
-                    <button class="btn inverse-normal" onclick="DoTrignoCalculation('cos-1')">
-                        cos<sup>-1</sup>
-                    </button>
-                    <button class="btn trigno-hyp-func" onclick="DoTrignoCalculation('cosh')">
-                        cosh
-                    </button>
-                    <button class="btn trigno-func" onclick="DoTrignoCalculation('tan')">
-                        tan
-                    </button>
-                    <button class="btn inverse-normal" onclick="DoTrignoCalculation('tan-1')">
-                        tan<sup>-1</sup>
-                    </button>
-                    <button class="btn trigno-hyp-func" onclick="DoTrignoCalculation('tanh')">
-                        tanh
-                    </button>
-                    <button class="btn" onclick="ClickEventInTrignoHyp()">
-                        Hyp
-                    </button>
-                    <button class="btn trigno-func" onclick="DoTrignoCalculation('cosec')">
-                        cosec
-                    </button>
-                    <button class="btn trigno-hyp-func" onclick="DoTrignoCalculation('cosech')">
-                        cosech
-                    </button>
-                    <button class="btn inverse-normal" style="font-size: 10px;" onclick="DoTrignoCalculation('cosec-1')">
-                        cosec<sup>-1</sup>
-                    </button>
-                    <button class="btn trigno-func" onclick="DoTrignoCalculation('sec')">
-                        sec
-                    </button>
-                    <button class="btn trigno-hyp-func" onclick="DoTrignoCalculation('sech')">
-                        sech
-                    </button>
-                    <button class="btn inverse-normal" onclick="DoTrignoCalculation('sec-1')">
-                        sec<sup>-1</sup>
-                    </button>
-                    <button class="btn trigno-func" onclick="DoTrignoCalculation('cot')">
-                        cot
-                    </button>
-                    <button class="btn trigno-hyp-func" onclick="DoTrignoCalculation('coth')">
-                        coth
-                    </button>
-                    <button class="btn inverse-normal" onclick="DoTrignoCalculation('cot-1')">
-                        cot<sup>-1</sup>
-                    </button>
-                </div>
-
-                <div id="function-extra-btn">
-                    <button class="btn extra-function" onclick="DoMod()">
-                        &#x2223;x&#x2223;
-                    </button>
-                    <button class="btn extra-function" onclick="FloorAndCeilVal(true)">
-                        &#8970;x&#8971;
-                    </button>
-                    <button class="btn extra-function" onclick="FloorAndCeilVal(false)">
-                        &#8968;x&#8969;
-                    </button>
-                </div>
-
-
-                <div class="buttons">
-
-                    <!-- first line -->
-                    <button class="btn" id="second-nd" onclick="SecoundaryButoonFunction()">2<sup>nd</sup></buttons>
-                    <button class="btn" id="pi-symbol" onclick="WritePIValue()">&#x213C;</buttons>
-                    <button class="btn" id="exponantial" onclick="WriteEValue()">e</buttons>
-                    <button class="btn" id="Clear" onclick="ClearScreen()">C</buttons>
-                    <button class="btn" onclick="RemoveFromBack()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
-                            <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
-                            <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z" />
-                        </svg>
-                    </buttons>
-
-                    <!-- Secoud line -->
-                    <button class="btn firstButtons" onclick="PowOfX(2)">x<sup>2</sup></button>
-                    <button class="btn secoundStream" onclick="PowOfX(3)">x<sup>3</sup></button>
-                    <button class="btn" id="one-upon-x" onclick="OneUponX()"><sup>1</sup>&#x2215;<sub>x</sub></button>
-                    <button class="btn" onclick="DoMod()">&#x2223;x&#x2223;</button>
-                    <button class="btn" onclick="Exponational()">exp</button>
-                    <button class="btn" onclick="BasicFunctions('%')">mod</button>
-
-                    <!-- third line -->
-                    <button class="btn firstButtons" id="two-root-x" onclick="PowOfX(1/2)"><sup>2</sup>&#x221A;x</button>
-                    <button class="btn secoundStream" id="three-root-x" onclick="PowOfX(1/3)"><sup>3</sup>&#x221A;x</button>
-                    <button class="btn" onclick="OpenBracketFunction()">&#40; <span id="Open-Bracket-Count"></span></button>
-                    <button class="btn" onclick="CloseBracketFunction()">&#41;</button>
-                    <button class="btn" onclick="DoFactorial()">n&#x21;</button>
-                    <button class="btn maths-btn" onclick="BasicFunctions('/')">
-                        &#247;
-                    </button>
-
-                    <!-- forth line -->
-                    <button class="btn firstButtons" onclick="BasicFunctions('**')">
-                        x<sup>y</sup>
-                    </button>
-                    <button class="btn secoundStream" id="y-root-x"><sup>y</sup>&#x221A;x</button>
-                    <button class="btn numbers-btn" onclick="AddNumber('7')">
-                        <span class="numbers">7</span>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('8')">
-                        <span class="numbers">8</span>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('9')">
-                        <span class="numbers">9</span>
-                    </button>
-                    <button class="btn maths-btn" onclick="BasicFunctions('*')">
-                        &#xd7;
-                    </button>
-
-                    <!-- fifth line -->
-                    <button class="btn firstButtons" onclick="ResToX(10)">
-                        10<sup>x</sup>
-                    </button>
-                    <button class="btn secoundStream" onclick="ResToX(2)">
-                        2<sup>x</sup>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('4')">
-                        <span class="numbers">4</span>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('5')">
-                        <span class="numbers">5</span>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('6')">
-                        <span class="numbers">6</span>
-                    </button>
-                    <button class="btn maths-btn" onclick="BasicFunctions('-')">
-                        &#x2212;
-                    </button>
-
-                    <!-- six line -->
-                    <button class="btn firstButtons" onclick="DoLog('Base10')">
-                        log
-                    </button>
-                    <button class="btn secoundStream">
-                        log<sub>y</sub>x
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('1')">
-                        <span class="numbers">
-                            1
-                        </span>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('2')">
-                        <span class="numbers">2</span>
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('3')">
-                        <span class="numbers">3</span>
-                    </button>
-                    <button class="btn maths-btn" onclick="BasicFunctions('+')">
-                        &#x2b;
-                    </button>
-                    <!-- seven line -->
-                    <button class="btn firstButtons" onclick="DoLog('Natural')">
-                        ln
-                    </button>
-                    <button class="btn secoundStream" onclick="ResToX(Math.E)">
-                        e<sup>x</sup>
-                    </button>
-                    <button class="btn" id="plus-or-minus" onclick="NegateFunction()">
-                        &#xb1;
-                    </button>
-                    <button class="btn numbers-btn" onclick="AddNumber('0')">
-                        <span class="numbers">0</span>
-                    </button>
-                    <button class="btn" id="dot" onclick="PutPoint()">
-                        &#46;
-                    </button>
-                    <button class="btn maths-btn" id="equal" onclick="EqualOperator()">
-                        &#x3d;
-                    </button>    
-                </div> 
             </div>
-            <div id="memory-show"> 
+            <div class="row">
+                <button class="col-2 btn deg-fix" id="DegBtn"
+                    onclick="DegToRad()">DEG</button>
+                <button class="col-2 btn deg-fix" onclick="Exponational()">F-E</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn memory col" id="memoryClear"
+                    onclick="MemoryClear()" disabled>MC</button>
+                <button type="button" class="btn memory col" id="memoryRecall"
+                    onclick="MemoryRead()" disabled>MR</button>
+                <button type="button" class="btn memory col"
+                    onclick="MemoryAdd()">M+</button>
+                <button type="button" class="btn memory col"
+                    onclick="MemorySub()">M-</button>
+                <button type="button" class="btn memory col"
+                    onclick="MemoryStore()">MS</button>
+                <button type="button" class="btn memory col"
+                    data-bs-toggle="offcanvas" data-bs-target="#memory-here"
+                    aria-controls="memory-here" onclick="ShowMemory()">
+                    M<i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="offcanvas offcanvas-bottom" tabindex="-1"
+                id="memory-here" aria-labelledby="offcanvasbottom">
+                <div class="offcanvas-body small" id="memory-show">
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="dropdown col align-item-start">
+                    <button type="button" class="btn dropdown-toggle extra-btn"
+                        id="trigno-extra" data-bs-toggle="dropdown"
+                        aria-expanded="false" data-bs-auto-close="outside">
+                        <img src="Images/trigno.svg" width="10px" height="10px"
+                            class="trigo-img">
+                        trigonometry
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="trigno-extra"
+                        style="width:auto;">
+
+                        <div class="row" style="width: 250px; --bs-gutter-x :
+                            0px !important;">
+                            <button class="col text-center dropdown-item ml-1"
+                                onclick="Trigno2nd()">2nd</button>
+                            <button class="col text-center dropdown-item normal"
+                                onclick="DoTrignoCalculation('sin')">sin</button>
+                            <button class="col text-center dropdown-item normal"
+                                onclick="DoTrignoCalculation('cos')">cos</button>
+                            <button class="col text-center dropdown-item normal
+                                mr-1" onclick="DoTrignoCalculation('tan')">tan</button>
+                            <button class="col text-center dropdown-item
+                                inverse" onclick="DoTrignoCalculation('sin-1')">sin<sup>-1</sup></button>
+                            <button class="col text-center dropdown-item
+                                inverse" onclick="DoTrignoCalculation('cos-1')">cos<sup>-1</sup></button>
+                            <button class="col text-center dropdown-item
+                                inverse" onclick="DoTrignoCalculation('tan-1')">tan<sup>-1</sup></button>
+                            <button class="col text-center dropdown-item hyper"
+                                onclick="DoTrignoCalculation('sinh')">sinh</button>
+                            <button class="col text-center dropdown-item hyper"
+                                onclick="DoTrignoCalculation('cosh')">cosh</button>
+                            <button class="col text-center dropdown-item hyper"
+                                onclick="DoTrignoCalculation('tanh')">tanh</button>
+                        </div>
+                        <div class="row" style="width: 250px; --bs-gutter-x :
+                            0px !important;">
+                            <button class="col text-center dropdown-item ml-1"
+                                onclick="TrignoHyper()">hyp</button>
+                            <button class="col text-center dropdown-item normal"
+                                onclick="DoTrignoCalculation('sec')">sec</button>
+                            <button class="col text-center dropdown-item normal"
+                                onclick="DoTrignoCalculation('cosec')">csc</button>
+                            <button class="col text-center dropdown-item normal
+                                mr-1" onclick="DoTrignoCalculation('cot')">cot</button>
+                            <button class="col text-center dropdown-item
+                                inverse" onclick="DoTrignoCalculation('sec-1')">sec<sup>-1</sup></button>
+                            <button class="col text-center dropdown-item
+                                inverse"
+                                onclick="DoTrignoCalculation('cosec-1')">csc<sup>-1</sup></button>
+                            <button class="col text-center dropdown-item
+                                inverse" onclick="DoTrignoCalculation('cot-1')">cot<sup>-1</sup></button>
+                            <button class="col text-center dropdown-item hyper"
+                                onclick="DoTrignoCalculation('sech')">coth</button>
+                            <button class="col text-center dropdown-item hyper"
+                                onclick="DoTrignoCalculation('cosech')">coth</button>
+                            <button class="col text-center dropdown-item hyper"
+                                onclick="DoTrignoCalculation('coth')">coth</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown col">
+                    <button type="button" class="btn dropdown-toggle extra-btn"
+                        id="trigno-extra" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        &#x192;
+                        functions
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="trigno-extra">
+                        <div class="row" style="--bs-gutter-x : 0px !important;
+                            width: 225px;">
+                            <button class="col dropdown-item text-center ml-1"
+                                onclick="DoMod()">&#x2223;x&#x2223;</button>
+                            <button class="col dropdown-item text-center"
+                                onclick="FloorAndCeilVal(true)">&#8970;x&#8971;</button>
+                            <button class="col dropdown-item text-center mr-1"
+                                onclick="FloorAndCeilVal(false)">&#8968;x&#8969;</button>
+                        </div>
+                        <div class="row" style="--bs-gutter-x : 0px !important;
+                            width: 225px;">
+                            <button class="col dropdown-item text-center ml-1"
+                                onclick="PutRandom()">rand</button>
+                            <button class="col dropdown-item text-center"
+                                onclick="DMS()">->dms</button>
+                            <button class="col dropdown-item text-center mr-1">->deg</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- normal buttons-->
+                <div class="row mr-0">
+                    <button type="button" id="second-nd" class="col btn"
+                        onclick="SecoundaryButoonFunction()">2<sup>nd</sup></button>
+                    <button type="button" class="col btn"
+                        onclick="WritePIValue()">&pi;</button>
+                    <button type="button" class="col btn"
+                        onclick="WriteEValue()">e</button>
+                    <button type="button" class="col btn" id="Clear"
+                        onclick="ClearScreen()">C</button>
+                    <button type="button" class="col btn"
+                        onclick="RemoveFromBack()"><i class="fa-solid
+                            fa-delete-left"></i></button>
+                </div>
+                <div class="row">
+                    <button type="button" class="col btn firstButtons"
+                        onclick="PowOfX(2)">x<sup>2</sup></button>
+                    <button type="button" class="col btn secoundStream"
+                        onclick="PowOfX(3)">x<sup>3</sup></button>
+                    <button type="button" class="col btn" onclick="OneUponX()">1/x</button>
+                    <button type="button" class="col btn" onclick="DoMod()">|x|</button>
+                    <button type="button" class="col btn"
+                        onclick="Exponational()">exp</button>
+                    <button type="button" class="col btn"
+                        onclick="BasicFunctions('%')">mod</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="col btn firstButtons"
+                        onclick="PowOfX(1/2)">2&Sqrt;x</button>
+                    <button type="button" class="col btn secoundStream"
+                        onclick="PowOfX(1/3)">3&Sqrt;x</button>
+                    <button type="button" class="col btn"
+                        onclick="OpenBracketFunction()">( <span
+                            id="Open-Bracket-Count"></span></button>
+                    <button type="button" class="col btn"
+                        onclick="CloseBracketFunction()">)</button>
+                    <button type="button" class="col btn"
+                        onclick="DoFactorial()">n!</button>
+                    <button type="button" class="col btn operator"
+                        onclick="BasicFunctions('/')">&divide;</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="col btn firstButtons"
+                        onclick="BasicFunctions('**')">x<sup>y</sup></button>
+                    <button type="button" class="col btn secoundStream"><sup>y</sup>&#x221A;x</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('7')">7</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('8')">8</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('9')">9</button>
+                    <button type="button" class="col btn operator"
+                        onclick="BasicFunctions('*')">&times;</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="col btn firstButtons"
+                        onclick="ResToX(10)">10<sup>x</sup></button>
+                    <button type="button" class="col btn secoundStream"
+                        onclick="ResToX(2)">2<sup>x</sup></button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('4')">4</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('5')">5</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('6')">6</button>
+                    <button type="button" class="col btn operator"
+                        onclick="BasicFunctions('-')" style="font-size: 15px
+                        !important;">&#9472;</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="col btn firstButtons"
+                        onclick="DoLog('Base10')">log</button>
+                    <button type="button" class="col btn secoundStream">log<sub>y</sub>x</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('1')">1</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('2')">2</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('3')">3</button>
+                    <button type="button" class="col btn operator"
+                        onclick="BasicFunctions('+')">+</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="col btn firstButtons"
+                        onclick="DoLog('Natural')">ln</button>
+                    <button type="button" class="col btn secoundStream"
+                        onclick="ResToX(Math.E)">e<sup>x</sup></button>
+                    <button type="button" class="col btn white"
+                        onclick="NegateFunction()">+/-</button>
+                    <button type="button" class="col btn white"
+                        onclick="AddNumber('0')">0</button>
+                    <button type="button" class="col btn white"
+                        onclick="PutPoint()">.</button>
+                    <button type="button" class="col btn operator"
+                        style="background-color: lightskyblue !important;"
+                        onclick="EqualOperator()">=</button>
+                </div>
             </div>
         </div>
     </body>
