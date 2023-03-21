@@ -1,3 +1,6 @@
+SecoundaryButoonFunction();
+Trigno2nd();
+
 // Number function 
 function AddNumber(number) {
     if (publicAPI.PS.value == "0") {
@@ -23,8 +26,12 @@ function BasicFunctions(symbol) {
         SetSecoundaryScreenValue(GetPrimaryScreenValue().toString() + symbol.toString());
 
     } else {
-        SetSecoundaryScreenValue(GetSecoundaryScreenValue() + publicAPI.PS.value.toString() + symbol.toString());
-
+        const x = GetSecoundaryScreenValue();
+        if (x[x.length - 1] == "=") {
+            SetSecoundaryScreenValue(publicAPI.PS.value.toString() + symbol.toString())
+        } else {
+            SetSecoundaryScreenValue(GetSecoundaryScreenValue() + publicAPI.PS.value.toString() + symbol.toString());
+        }
     }
     SetPrimaryScreenValue("0");
 }
@@ -64,7 +71,8 @@ function ClearScreen() {
 
 // Brackets Button Functions
 function OpenBracketFunction() {
-    if (GetSecoundaryScreenValue() == "") {
+    const x = GetSecoundaryScreenValue();
+    if (x == "" && x[x.length - 1] == "=") {
         SetSecoundaryScreenValue("(");
     } else {
         SetSecoundaryScreenValue(GetSecoundaryScreenValue() + "(");
@@ -82,13 +90,18 @@ function CloseBracketFunction() {
 // Factorial Button function 
 function DoFactorial() {
     const number = Number(GetPrimaryScreenValue().toString());
-    let ans = 1;
-    if (number != 0) {
-        for (let i = 1; i <= number; i++) {
-            ans *= i;
+    if (number > 100) {
+        SetPrimaryScreenValue("Infinity");
+    } else {
+
+        let ans = 1;
+        if (number != 0) {
+            for (let i = 1; i <= number; i++) {
+                ans *= i;
+            }
         }
+        SetPrimaryScreenValue(ans);
     }
-    SetPrimaryScreenValue(ans);
 }
 
 // log Function 
@@ -117,7 +130,11 @@ function OneUponX() {
 
 // Mod function
 function DoMod() {
-    SetPrimaryScreenValue(Math.abs(Number(GetPrimaryScreenValue().toString())));
+    let x = GetPrimaryScreenValue();
+    if (x[0] == "(") {
+        x = x.substring(1, x.length - 1);
+    }
+    SetPrimaryScreenValue(Math.abs(Number(x)));
 }
 
 // PI value
@@ -176,169 +193,165 @@ function SecoundaryButoonFunction() {
             publicAPI.FirstButtons[i].style.display = "inline";
         }
         secoundActivated = false;
-        publicAPI.SecoundMarkButton.style.cssText = "background-color : buttonface;  box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2); border-width: 1px; border-style: outset; border-color: buttonborder; border-image: initial;";
+        publicAPI.SecoundMarkButton.classList.remove("equal");
     } else {
         for (let i = 0, len = publicAPI.SecoundButtons.length; i < len; i++) {
             publicAPI.SecoundButtons[i].style.display = "inline";
             publicAPI.FirstButtons[i].style.display = "none";
         }
-        publicAPI.SecoundMarkButton.style.cssText = "background-color : rgb(0 95 238 / 80%); box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2); border : none";
+        publicAPI.SecoundMarkButton.classList.add("equal");
         secoundActivated = true;
     }
 }
 
-// trigno extra button show or hide
-function ShowExtraTrignoFunction() {
-    if (trignoActivated) {
-        HideTrigno();
-        Hide2ndInTrigno();
-    } else {
-        ShowTrigno();
-        HideFunction();
-    }
-}
+//function of trigno and hyp
 
-function ShowExtraFunctionButton() {
-    if (functionExtraActivated) {
-        HideFunction();
-        Hide2ndInTrigno();
-    } else {
-        ShowFunction();
-        HideTrigno();
-    }
-}
-
-// Show and hide method of Extra buttons
-function ShowTrigno() {
-    publicAPI.TrignoExtraFunction.style.display = "grid";
-    publicAPI.TrignoAngle.style.transform = "rotate(180deg)";
-    trignoActivated = true;
-}
-
-function HideTrigno() {
-    publicAPI.TrignoExtraFunction.style.display = "none";
-    publicAPI.TrignoAngle.style.transform = "rotate(0deg)";
-    trignoActivated = false;
-}
-
-function ShowFunction() {
-    publicAPI.ExtraFunID.style.display = "grid";
-    publicAPI.FunctionAngle.style.transform = "rotate(180deg)";
-    functionExtraActivated = true;
-}
-
-function HideFunction() {
-    publicAPI.ExtraFunID.style.display = "none";
-    publicAPI.FunctionAngle.style.transform = "rotate(0deg)";
-    functionExtraActivated = false;
-}
-
-// showing extra button inside a trigno function
-function ClickEventInTrigno2nd() {
+function Trigno2nd() {
     if (secoundInTrignoActivated) {
-        Hide2ndInTrigno();
+        HideNormal();
+        ShowInverse();
+        HideHyper();
+        secoundInTrignoActivated = false;
     } else {
-        Show2ndInTrigno();
+        ShowNormal();
+        HideHyper();
+        HideInverse();
+        secoundInTrignoActivated = true;
     }
 }
 
-function ClickEventInTrignoHyp() {
+function TrignoHyper() {
     if (hyperInTrignoActivated) {
-        HideHypInTrigno();
+        HideHyper();
+        ShowNormal();
+        HideInverse();
+        hyperInTrignoActivated = false;
     } else {
-        ShowHypInTrigno();
+        ShowHyper();
+        HideNormal();
+        HideInverse();
+        hyperInTrignoActivated = true;
     }
 }
 
-// Show and hide methods inside a trigno section
-function Show2ndInTrigno() {
-    for (let i = 0, len = publicAPI.Trigno2NdBtnNormalClass.length; i < len; i++) {
-        publicAPI.Trigno2NdBtnInverseClass[i].style.display = "inline";
-        publicAPI.Trigno2NdBtnNormalClass[i].style.display = "none";
-        publicAPI.TrignoHypClass[i].style.display = "none";
+
+//Show and hide method inside a trigno button
+function ShowNormal() {
+    for (let i = 0, len = publicAPI.TrignoNormal.length; i < len; i++) {
+        publicAPI.TrignoNormal[i].style.display = "block";
     }
-    secoundInTrignoActivated = true;
 }
 
-function Hide2ndInTrigno() {
-    for (let i = 0, len = publicAPI.Trigno2NdBtnNormalClass.length; i < len; i++) {
-        publicAPI.Trigno2NdBtnInverseClass[i].style.display = "none";
-        publicAPI.Trigno2NdBtnNormalClass[i].style.display = "inline";
-        publicAPI.TrignoHypClass[i].style.display = "none";
+function HideNormal() {
+    for (let i = 0, len = publicAPI.TrignoNormal.length; i < len; i++) {
+        publicAPI.TrignoNormal[i].style.display = "none";
     }
-    secoundInTrignoActivated = false;
-}
-function ShowHypInTrigno() {
-    for (let i = 0, len = publicAPI.TrignoHypClass.length; i < len; i++) {
-        publicAPI.Trigno2NdBtnInverseClass[i].style.display = "none";
-        publicAPI.Trigno2NdBtnNormalClass[i].style.display = "none";
-        publicAPI.TrignoHypClass[i].style.display = "inline";
-    }
-    hyperInTrignoActivated = true;
 }
 
-function HideHypInTrigno() {
-    for (let i = 0, len = publicAPI.TrignoHypClass.length; i < len; i++) {
-        publicAPI.Trigno2NdBtnInverseClass[i].style.display = "none";
-        publicAPI.Trigno2NdBtnNormalClass[i].style.display = "inline";
-        publicAPI.TrignoHypClass[i].style.display = "none";
+function ShowInverse() {
+    for (let i = 0, len = publicAPI.TrignoInverse.length; i < len; i++) {
+        publicAPI.TrignoInverse[i].style.display = "block";
     }
-    hyperInTrignoActivated = false;
+}
+
+function HideInverse() {
+    for (let i = 0, len = publicAPI.TrignoInverse.length; i < len; i++) {
+        publicAPI.TrignoInverse[i].style.display = "none";
+    }
+}
+
+function ShowHyper() {
+    for (let i = 0, len = publicAPI.TrignoHyper.length; i < len; i++) {
+        publicAPI.TrignoHyper[i].style.display = "block";
+    }
+}
+
+function HideHyper() {
+    for (let i = 0, len = publicAPI.TrignoHyper.length; i < len; i++) {
+        publicAPI.TrignoHyper[i].style.display = "none";
+    }
 }
 
 // Trignomatry compuation 
 function DoTrignoCalculation(str) {
-    //const x = toDegrees(Number(GetPrimaryScreenValue().toString()));
-    const x = Number(GetPrimaryScreenValue().toString());
+    let x = Number(GetPrimaryScreenValue().toString());
+    let y = 0;
+    if (isDegree) {
+        y = toRadians(x);
+    }
     switch (str) {
         //normal
         case "sin":
-            SetPrimaryScreenValue(Math.sin(x));
+            SetPrimaryScreenValue(Math.sin(y));
             break;
         case "cos":
-            SetPrimaryScreenValue(Math.cos(x));
+            SetPrimaryScreenValue(Math.cos(y));
             break;
         case "tan":
-            SetPrimaryScreenValue(Math.tan(x));
+            SetPrimaryScreenValue(Math.tan(y));
             break;
         case "cot":
-            SetPrimaryScreenValue(1 / Math.tan(x));
+            SetPrimaryScreenValue(1 / Math.tan(y));
             break;
         case "cosec":
-            SetPrimaryScreenValue(1 / Math.sin(x));
+            SetPrimaryScreenValue(1 / Math.sin(y));
             break;
         case "sec":
-            SetPrimaryScreenValue(1 / Math.cos(x));
+            SetPrimaryScreenValue(1 / Math.cos(y));
             break;
 
         //inverse
         case "sin-1":
-            if(x > 1 && x < -1){
-                
-            } else{
-                SetPrimaryScreenValue(Math.asin(x));
+            if (x > 1 && x < -1) {
+                SetPrimaryScreenValue("Invalid Value!");
+            } else {
+                if (isDegree) {
+                    SetPrimaryScreenValue(toDegrees(Math.asin(x)));
+                } else {
+                    SetPrimaryScreenValue(Math.asin(x));
+                }
             }
             break;
         case "cos-1":
-            if(x > 1 && x < -1)
-            SetPrimaryScreenValue("Invalid Value!");
-            else
-                SetPrimaryScreenValue(Math.acos(x));
-            break;
-        case "tan-1":
-            if(x > 1 && x < -1)
+            if (x > 1 && x < -1)
                 SetPrimaryScreenValue("Invalid Value!");
             else
-                SetPrimaryScreenValue(Math.atan(x));
+                if (isDegree) {
+                    SetPrimaryScreenValue(toDegrees(Math.acos(x)));
+                } else {
+                    SetPrimaryScreenValue(Math.acos(x));
+                }
+            break;
+        case "tan-1":
+            if (x > 1 && x < -1)
+                SetPrimaryScreenValue("Invalid Value!");
+            else
+                if (isDegree) {
+                    SetPrimaryScreenValue(toDegrees(Math.atan(x)));
+                } else {
+                    SetPrimaryScreenValue(Math.atan(x));
+                }
             break;
         case "cot-1":
-            SetPrimaryScreenValue(1 / Math.atan(x));
+            if (isDegree) {
+                SetPrimaryScreenValue(toDegrees(1 / Math.atan(x)));
+            } else {
+                SetPrimaryScreenValue(1 / Math.atan(x));
+            }
             break;
         case "cosec-1":
-            SetPrimaryScreenValue(1 / Math.asin(x));
+            if (isDegree) {
+                SetPrimaryScreenValue(toDegrees(1 / Math.asin(x)));
+            } else {
+                SetPrimaryScreenValue(1 / Math.asin(x));
+            }
             break;
         case "sec-1":
-            SetPrimaryScreenValue(1 / Math.acos(x));
+            if (isDegree) {
+                SetPrimaryScreenValue(toDegrees(1 / Math.acos(x)));
+            } else {
+                SetPrimaryScreenValue(1 / Math.acos(x));
+            }
             break;
 
         // hyp functions
@@ -367,6 +380,10 @@ function DoTrignoCalculation(str) {
     }
 }
 
+function toRadians(angle) {
+    return angle * (Math.PI / 180);
+}
+
 // floor and ceil values function
 function FloorAndCeilVal(x) {
     if (x) {
@@ -380,51 +397,54 @@ function FloorAndCeilVal(x) {
 function MemoryClear() {
     if (Memory.length != 0) {
         Memory.length = 0;
+        publicAPI.MemorySection.innerHTML = "Nothing to Show.";
     }
+    DisbleButton();
 }
 
 function MemoryStore() {
     if (Memory[Memory.length - 1] != Number(GetPrimaryScreenValue())) {
         Memory.push(Number(GetPrimaryScreenValue().toString()));
     }
+    EnableButton();
 }
 
 function MemoryRead() {
     if (Memory.length != 0) {
         SetPrimaryScreenValue(Memory[Memory.length - 1]);
     }
-
 }
 
 function MemoryAdd() {
     if (Memory.length != 0) {
         Memory[Memory.length - 1] += Number(GetPrimaryScreenValue().toString());
+    } else {
+        Memory[0] = Number(GetPrimaryScreenValue());
     }
+    EnableButton();
 }
 
 function MemorySub() {
     if (Memory.length != 0) {
         Memory[Memory.length - 1] -= Number(GetPrimaryScreenValue().toString());
     }
+    else {
+        Memory[0] = Number(GetPrimaryScreenValue());
+    }
+    EnableButton()
 }
 
 function ShowMemory() {
     if (Memory.length != 0) {
-        if (!MemoryShown) {
-            let htmlText = '<h4 style="text-align: center; border-bottom: 1px solid black;"> Memory Stored </h4>';
-            for (let i = 0, len = Memory.length - 1; i <= len; len--) {
-                htmlText += '<div class="text-memory"><p>';
-                htmlText += Memory[len].toString();
-                htmlText += '</p></div>';
-            }
-            publicAPI.MemorySection.style.display = "flex";
-            publicAPI.MemorySection.innerHTML = htmlText;
-            MemoryShown = true;
-        } else {
-            publicAPI.MemorySection.style.display = "none";
-            MemoryShown = false;
+        let html = "";
+        for (let i = Memory.length - 1, len = 0; i >= len; i--) {
+            html += `<div>${Memory[i]}</div>`
         }
+        publicAPI.MemorySection.innerHTML = html;
+    } else {
+        publicAPI.MemorySection.innerHTML = "Nothing to Show.";
     }
+
 }
 
 //exp function
@@ -437,18 +457,24 @@ function Exponational() {
             break;
         }
     }
-    if(!isFound){
+    if (!isFound) {
         SetPrimaryScreenValue(Number(GetPrimaryScreenValue().toString()).toExponential());
     }
+}
+
+function EnableButton() {
+    document.getElementById("memoryClear").removeAttribute("disabled");
+    document.getElementById("memoryRecall").removeAttribute("disabled");
+}
+
+function DisbleButton() {
+    document.getElementById("memoryClear").disabled = true;
+    document.getElementById("memoryRecall").disabled = true;
 }
 
 //Helper function
 function toDegrees(angle) {
     return angle * (180 / Math.PI);
-}
-
-function toRadians(angle) {
-    return angle * (Math.PI / 180);
 }
 
 function ChangeTextOfClearButton(boolean) {
@@ -485,7 +511,6 @@ function GetSecoundaryScreenValue() {
 
 function SetSecoundaryScreenValue(x) {
     publicAPI.SC.value = x;
-
 }
 
 // Bracket counter incrementer and decrementer
@@ -518,4 +543,27 @@ function ClearBracketCounter() {
     if (publicAPI.BracketCounter != "") {
         publicAPI.BracketCounter.innerHTML = "";
     }
+}
+
+// deg to radian fucntion
+function DegToRad() {
+    if (isDegree) {
+        isDegree = false;
+        publicAPI.DegBtn.innerHTML = "RAD";
+    } else {
+        isDegree = true;
+        publicAPI.DegBtn.innerHTML = "DEG";
+    }
+}
+
+function PutRandom() {
+    SetPrimaryScreenValue(Math.random());
+}
+
+function DMS() {
+    const x = Number(GetPrimaryScreenValue().toString());
+    let degree = Math.floor(x);
+    let minutes = ((x - Math.floor(x)) * 60.0);
+    let seconds = (minutes - Math.floor(minutes)) * 60.0;
+    SetPrimaryScreenValue(degree + "." + Math.floor(minutes) + seconds.toFixed(0));
 }
